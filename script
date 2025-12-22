@@ -1,0 +1,24 @@
+#!/bin/bash
+#Simple script to just find out the actual freespace on a partition
+#HONOURS all of df, if we keep it as -tHiS #but tHiS will break it!
+#If we set parition then we look for it
+if [[ -n $1 ]]; then
+  SPACE=`df -k $2 $1 | grep $1`
+else
+#otherwise get the whole free space
+  SPACE=`df -k $2 --total | grep total`
+fi
+#Read to array split on space, as per df output
+IFS=' ' read -r -a FREE <<< "$SPACE"
+#and the 3rd last column is the amount of space we found
+#0=Filesystem
+#1=Total Size
+#Could be various..... T I etc
+#X-3Available
+#X-2=Percentage used
+#X-1=MountPoint/label
+if [ ${#FREE[@]} -ge 6 ]; then
+  echo ${FREE[${#FREE[@]}-3]}
+else
+  echo "Invalid"
+fi
