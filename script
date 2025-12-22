@@ -1,13 +1,20 @@
 #!/bin/bash
 #Simple script to just find out the actual freespace on a partition
-#HONOURS all of df, if we keep it as -tHiS #but tHiS will break it!
+#HONOURS all of df, if we keep it as -tHiS
 #If we set parition then we look for it
 if [[ -n $1 ]]; then
-  SPACE=`df -k $2 $1 | grep $1`
+  #check that 1st parameter is not a df switch
+  if [[ $1 != -* ]]; then
+    SPACE=`df -k $2 $1 | grep $1`
+  else
+    #if it is we return all free space
+    SPACE=`df -k $1 --total | grep total`
+  fi
 else
 #otherwise get the whole free space
-  SPACE=`df -k $2 --total | grep total`
+  SPACE=`df -k --total | grep total`
 fi
+
 #Read to array split on space, as per df output
 IFS=' ' read -r -a FREE <<< "$SPACE"
 #and the 3rd last column is the amount of space we found
