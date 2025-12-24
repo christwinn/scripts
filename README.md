@@ -43,7 +43,10 @@ outputs 80G
 
 A simple script to find when a file was modified (in seconds). Does it need to be backed up?
 
+```bash
 ./filemod /home/me/myfile
+```
+
 outputs 12345
 
 
