@@ -1,0 +1,8 @@
+#!/bin/bash
+
+#how long ago was file modified
+M=`date -r "$1" +%s`
+N=`date +%s`
+
+A=$((N-M))
+echo $A;
