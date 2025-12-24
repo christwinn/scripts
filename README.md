@@ -38,3 +38,13 @@ outputs 82857620
 ./freespace -h
 ```
 outputs 80G
+
+# filemod
+
+A simple script to find when a file was modified (in seconds). Does it need to be backed up?
+
+./filemod /home/me/myfile
+outputs 12345
+
+
+
