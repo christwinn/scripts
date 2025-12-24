@@ -17,14 +17,14 @@ outputs 37001384
 ```
 outputs 36G
 
-## Get the / partition free space
+## Get the /dev/sda3 partition free space
 ```bash
-./freespace /
+./freespace /dev/sda3
 ```
 outputs 37001384
 
 ```bash
-./freespace / -h 
+./freespace /dev/sda3 -h 
 ```
 outputs 36G
 
